@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block title %}Ge$tor{% endblock %}
+
+{% block content %}
+<main class="main-content-dashboard-ingresos">
+<div class="summary-card-dashboard">
+    <div class="summary-content-dashboard">
+        <div class="summary-left-dashboard">
+            <h1 class="greeting-title-dashboard">Bienvenido, {{ usuario }}</h1>
+            <p class="greeting-text-dashboard"><strong>Acá podrás visualizar un resumen<br>de tus movimientos
+                    mensuales</strong></p>
+        </div>
+        <div class="summary-center-dashboard">
+            <div class="available-amount-dashboard">  <strong>Disponible: $<span id="saldo">{{ disponible }}</span></strong></div>
+            <div class="monthly-stats-dashboard">
+                <div><strong>Ingresos de {{ mes }}: ${{ totalIngreso }}</strong></div>
+                
+                <div><strong>Egresos de {{ mes }}: ${{ totalEgreso }}</strong></div>
+            </div>
+        </div>
+        <div class="summary-right-dashboard">
+            <button class="btn btn-primary-ingresos" onclick="window.location.href='#modal-add-expense'">Agregar
+                gasto</button>
+            <button class="btn btn-secondary-ingresos" onclick="window.location.href='#modal-edit-income'">Agregar
+                ingresos</button>
+        </div>
+    </div>
+</div>
+
+<div class="transactions-section-ingresos">
+    <div class="transactions-header-ingresos">Últimos ingresos</div>
+    <table class="transactions-table-ingresos">
+        <thead>
+            <tr>
+                <th class="text-center">Monto</th>
+                <th class="text-center">Categoría</th>
+                 <th class="text-center">Descripcion</th>
+                <th class="text-center">Fecha</th>
+               
+            </tr>
+        </thead>
+        <tbody >
+
+            {% for transaccion in lista %}
+            <tr>
+                <td class="amount-ingresos text-center">${{ transaccion.monto }}</td>
+                <td class="text-center"><span id="{{transaccion.categoria}}" class="badge">{{ transaccion.categoria }}</span></td>
+                <td class="text-center">{{ transaccion.descripcion }}</td>
+                <td class="text-center">{{ transaccion.fecha }}</td>
+            </tr>
+        {% endfor %}
+
+    
+        
+        </tbody>
+    </table>
+</div>
+
+<!-- Form Agregar Gasto -->
+<div class="modal-expenses" id="modal-add-expense">
+    <div class="modal-content-expenses">
+        <div class="modal-header-expenses">
+            <h2 class="modal-title-expenses">Agregar gasto</h2>
+            <a href="#" class="modal-close-expenses">✕</a>
+        </div>
+        <form method="post" action="{{ url_for('agregar_gasto') }}" class="modal-form-expenses">
+            <div class="form-group-expenses">
+                <label class="form-label-expenses"><strong>Monto</strong></label>
+                <input type="number" name="monto" class="form-input-expenses" placeholder="Ingrese el monto" required>
+            </div>
+            <div class="form-group-expenses">
+                <label class="form-label-expenses"><strong>Categoría</strong></label>
+                <div class="select-wrapper-expenses">
+                    <select name="categoria" class="form-select-expenses" required>
+                        <option value="" disabled selected>Seleccione una categoría</option>
+                        {% for tipo in tipos_gastos %}
+                            <option value="{{ tipo.id_tipo }}">{{ tipo.nombre_tipo }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group-expenses">
+                <label class="form-label-expenses"><strong>Descripción</strong></label>
+                <textarea name="descripcion" class="form-textarea-expenses" placeholder="Ingrese una descripción"></textarea>
+            </div>
+            <button type="submit" class="submit-button-expenses">Ingresar</button>
+        </form>
+</div>
+
+</div>
+
+<!-- Form Editar Ingresos -->
+<div class="modal-expenses" id="modal-edit-income">
+    <div class="modal-content-expenses">
+        <div class="modal-header-expenses">
+            <h2 class="modal-title-expenses">Agregar ingresos</h2>
+            <a href="#" class="modal-close-expenses">✕</a>
+        </div>
+        <form method="post" action="{{ url_for('agregar_ingreso') }}" class="modal-form-expenses">
+            <div class="form-group-expenses">
+                <label class="form-label-expenses"><strong>Monto</strong></label>
+                <input type="number" name="monto" class="form-input-expenses" placeholder="Ingrese el monto" required>
+            </div>
+            <button type="submit" class="submit-button-expenses">Ingresar</button>
+        </form>
+    </div>
+</div>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script>const categorias = document.querySelectorAll(".badge");
+
+
+    
+
+
+
+    const saldo = document.getElementById("saldo");
+    if (parseFloat(saldo.textContent) < 0) {
+        saldo.style.color = "red";
+    } else {
+        saldo.style.color = "green";
+    }
+    categorias.forEach(categoria => {
+        switch (categoria.id) {
+            case "Alquiler":
+                categoria.style.backgroundColor = "#3D63FF";
+                
+                break;
+            case "Alimentos":
+                categoria.style.backgroundColor = "#D45F5F";
+                
+                break;
+            case "Transporte":
+                categoria.style.backgroundColor = "#30B9FE";
+                break;
+            case "Otros":
+                categoria.style.backgroundColor = "#38E184";
+                break;
+            default:
+                categoria.style.backgroundColor = "#D25AC8";
+        }
+    });</script>
+
+{% endblock %}

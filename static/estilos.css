@@ -1,0 +1,2166 @@
+/* Modern Financial App Styles - Inspired by professional fintech design */
+
+/* CSS Variables - Modern Dark Theme */
+:root {
+  /* Primary Colors */
+  --primary-50: #f0f9ff;
+  --primary-100: #e0f2fe;
+  --primary-200: #bae6fd;
+  --primary-300: #7dd3fc;
+  --primary-400: #38bdf8;
+  --primary-500: #0ea5e9; /* main brand */
+  --primary-600: #0284c7;
+  --primary-700: #0369a1;
+  --primary-800: #075985;
+  --primary-900: #0c4a6e;
+
+  /* Success/Green */
+  --success-50: #f0fdf4;
+  --success-100: #dcfce7;
+  --success-200: #bbf7d0;
+  --success-300: #86efac;
+  --success-400: #4ade80;
+  --success-500: #22c55e;
+  --success-600: #16a34a;
+  --success-700: #15803d;
+
+  /* Danger/Red */
+  --danger-50: #fef2f2;
+  --danger-100: #fee2e2;
+  --danger-200: #fecaca;
+  --danger-300: #fca5a5;
+  --danger-400: #f87171;
+  --danger-500: #ef4444;
+  --danger-600: #dc2626;
+  --danger-700: #b91c1c;
+
+  /* Neutral/Gray Scale */
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-300: #cbd5e1;
+  --gray-400: #94a3b8;
+  --gray-500: #64748b;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1e293b;
+  --gray-900: #0f172a;
+
+  /* Dark Theme Colors */
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --bg-card: #1e293b;
+  --bg-card-hover: #334155;
+
+  /* Text Colors */
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+
+  /* Border Colors */
+  --border-primary: #334155;
+  --border-secondary: #475569;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  /* Border Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+}
+
+/* Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* Updated font family to use Roboto Flex */
+  font-family: "Roboto Flex", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    sans-serif;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+main {
+  flex: 1;
+}
+
+/* Header Styles */
+.header,
+.header-dashboard,
+.header-ingresos {
+  /* Added rounded corners and white border to match other elements */
+  background: rgba(30, 41, 59, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-xl);
+  padding: 3rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-lg);
+}
+
+/* Added logo container styles for header */
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Center logo visually in the header while keeping controls functional */
+.header-dashboard .header-logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: auto; /* allow clicks */
+  width: min(920px, 80%); /* wider and responsive */
+  max-width: 920px;
+  display: flex;
+  justify-content: center;
+  z-index: 60; /* sit above header children */
+}
+
+/* Updated logo button to be larger and more prominent */
+.logo-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s ease;
+  border-radius: var(--radius-md);
+}
+
+.logo-button:hover {
+  transform: scale(1.05);
+  background: rgba(51, 65, 85, 0.3);
+}
+
+.logo-button img {
+  height: 50px;
+  width: 70px;
+  object-fit: contain;
+}
+
+/* Added new larger logo button style for all pages */
+.logo-button-large {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  border-radius: var(--radius-lg);
+}
+
+.logo-button-large:hover {
+  transform: scale(1.08);
+  background: rgba(51, 65, 85, 0.4);
+  box-shadow: var(--shadow-md);
+}
+
+.logo-button-large img {
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* Legacy support for old logo styles */
+
+.header a,
+.header-dashboard a,
+.header-ingresos a {
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  font-family: "Roboto Flex", sans-serif;
+}
+
+.header .link-registro,
+.header-dashboard .register-btn-dashboard,
+.header-ingresos .register-btn-ingresos {
+  background: var(--primary-500);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  font-size: 0.875rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-md);
+  margin-left: 50rem;
+  font-family: "Roboto Flex", sans-serif;
+}
+
+.header .link-registro:hover,
+.header-dashboard .register-btn-dashboard:hover,
+.header-ingresos .register-btn-ingresos:hover {
+  background: var(--primary-600);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Added consistent header button container and standardized button styles */
+.header-buttons-container {
+  /* By default hide the full buttons and show via hamburger (.open) */
+  display: none;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.hamburger-button.open {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+/* When the menu has class open, show the buttons. Desktop layout uses row direction. */
+.header-buttons-container.open {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+/* Hamburger button (visible on all sizes). Toggling .open animates to X */
+.hamburger-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: rgba(51, 65, 85, 0.2);
+  border: 1px solid var(--border-primary);
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: 0.75rem;
+}
+.hamburger-box {
+  display: inline-block;
+  width: 20px;
+  height: 14px;
+  position: relative;
+}
+.hamburger-inner {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--text-primary);
+  transform: translateY(-50%);
+}
+.hamburger-inner::before,
+.hamburger-inner::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--text-primary);
+}
+.hamburger-inner::before {
+  top: -7px;
+}
+.hamburger-inner::after {
+  top: 7px;
+}
+.hamburger-button.open .hamburger-inner {
+  background: transparent;
+}
+.hamburger-button.open .hamburger-inner::before {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger-button.open .hamburger-inner::after {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Dropdown menu styles */
+.header-menu {
+  /* Off-canvas panel from the left */
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 1100px;
+  width: 350px;
+  background: var(--bg-card); /* solid background to avoid page text showing through */
+  border-right: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 0 30px 60px rgba(2, 6, 23, 0.7);
+  overflow: hidden;
+  transform: translateX(100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 320ms cubic-bezier(0.22, 0.9, 0.2, 1), opacity 220ms ease;
+  z-index: 120;
+  display: flex;
+  flex-direction: column;
+}
+.header-menu.open {
+  transform: translateX(-110%);
+  opacity: 1;
+  pointer-events: auto;
+}
+.menu-section {
+  padding: 18px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 110;
+}
+
+.menu-section:last-child {
+  border-bottom: none;
+}
+.menu-section-title {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.menu-item {
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: background 150ms ease, transform 120ms ease;
+}
+.menu-item:hover {
+  background: linear-gradient(90deg, rgba(14, 165, 233, 0.06), rgba(34, 197, 94, 0.04));
+  transform: translateY(-1px);
+}
+
+.menu-item-icon {
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-400);
+}
+.menu-item-text {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* small caret/arrow */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 110;
+}
+
+/* Added styles for menu section header with close button */
+.menu-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.menu-close-button {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: var(--danger-300);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.menu-close-button:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.5);
+  transform: scale(1.05);
+}
+
+body.profile-modal-open .header-menu,
+body.profile-modal-open .hamburger-button,
+body.profile-modal-open .menu-close-button,
+body.profile-modal-open .header .menu-close-button,
+body.profile-modal-open .header-menu *,
+body.profile-modal-open button[aria-label*="close"],
+body.profile-modal-open [class*="-close"],
+body.profile-modal-open [class*="close-"],
+body.profile-modal-open [id*="close"],
+body.profile-modal-open [data-close],
+body.profile-modal-open [aria-hidden="false"] > .menu-close-button {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  transform: none !important;
+}
+
+/* Ensure the modal sits above everything */
+.profile-modal-open .modal-expenses,
+.modal-expenses,
+.modal-content-expenses {
+  z-index: 120000 !important;
+}
+
+
+/* prevent body scroll while modal is open */
+body.profile-modal-open {
+  overflow: hidden !important;
+}
+
+/* Make the menu scrollable when content exceeds max-height */
+.header-menu {
+  overflow-y: auto;
+}
+
+/* Desktop: align menu to the right and show items in column (already set), ensure wide screens keep same behavior */
+@media (min-width: 1024px) {
+  /* keep left off-canvas but add slight offset */
+  .header-menu {
+    left: 2rem;
+  }
+}
+
+/* Position hamburger button fixed to the left so menu appears from that side */
+.hamburger-button {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 130;
+}
+
+.btn-header {
+  padding: 0.875rem 1.25rem;
+  border-radius: var(--radius-lg);
+  font-weight: 600; /* Unifica grosor */
+  font-size: 0.95rem; /* Tamaño consistente */
+  min-width: 160px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border: 1px solid var(--border-primary);
+  background: rgba(51, 65, 85, 0.2);
+  box-shadow: none;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+  font-family: "Roboto Flex", sans-serif; /* misma fuente */
+}
+
+/* Income header buttons - Green */
+.btn-income-header {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: rgba(34, 197, 94, 0.2);
+  color: var(--success-300);
+}
+.btn-income-header:hover {
+  background: rgba(34, 197, 94, 0.18);
+  border-color: rgba(34, 197, 94, 0.35);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Expense header buttons - Red */
+.btn-expense-header {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.2);
+  color: var(--danger-300);
+}
+.btn-expense-header:hover {
+  background: rgba(239, 68, 68, 0.18);
+  border-color: rgba(239, 68, 68, 0.35);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Success header buttons - Green */
+.btn-success-header {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: rgba(34, 197, 94, 0.2);
+  color: var(--success-300);
+}
+.btn-success-header:hover {
+  background: rgba(34, 197, 94, 0.18);
+  border-color: rgba(34, 197, 94, 0.35);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+/* Neutral header buttons - Gray */
+.btn-neutral-header {
+  background: rgba(71, 85, 105, 0.12);
+  border-color: rgba(71, 85, 105, 0.25);
+  color: var(--gray-100);
+}
+.btn-neutral-header:hover {
+  background: rgba(71, 85, 105, 0.2);
+  border-color: rgba(71, 85, 105, 0.4);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Added smaller view buttons for "Ver ingresos" and "Ver egresos" */
+.btn-view-header {
+  padding: 0.625rem 1rem;
+  border-radius: var(--radius-lg);
+  font-weight: 400; /* Not bold */
+  font-size: 0.8rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-md);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto Flex", sans-serif;
+  min-width: 90px;
+  text-align: center;
+}
+
+/* Income view buttons - Green, smaller */
+.btn-view-income-header {
+  background: var(--success-500);
+  color: white;
+}
+
+.btn-view-income-header:hover {
+  background: var(--success-600);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Expense view buttons - Red, smaller */
+.btn-view-expense-header {
+  background: var(--danger-500);
+  color: white;
+}
+
+.btn-view-expense-header:hover {
+  background: var(--danger-600);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Layout */
+.main-content-dashboard,
+.main-content-ingresos {
+  max-width: 1400px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+/* Card Styles */
+.summary-card-dashboard,
+.transactions-section-dashboard,
+.chart-section-dashboard,
+.summary-card-ingresos,
+.transactions-section-ingresos {
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-lg);
+  transition: all 0.3s ease;
+}
+
+.summary-card-dashboard:hover,
+.transactions-section-dashboard:hover,
+.chart-section-dashboard:hover {
+  border-color: var(--border-secondary);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Summary Section */
+.summary-content-dashboard,
+.summary-content-ingresos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.summary-left-dashboard,
+.summary-left-ingresos {
+  justify-self: start;
+}
+
+/* Added elegant welcome title styling */
+.greeting-title-elegant {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin: 0 0 0.5rem 0;
+  color: var(--text-primary);
+  letter-spacing: -0.05em;
+  font-family: "Roboto Flex", sans-serif;
+  background: linear-gradient(135deg, var(--primary-400), var(--success-400));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.greeting-title-elegant-large {
+  font-size: 3rem;
+  font-weight: 300;
+  margin: 0 0 0.5rem 0;
+  color: var(--text-primary);
+  letter-spacing: -0.05em;
+  font-family: "Roboto Flex", sans-serif;
+  background: linear-gradient(135deg, var(--primary-400), var(--success-400));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.greeting-title-dashboard,
+.greeting-title-ingresos {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: var(--text-primary);
+  letter-spacing: -0.025em;
+  font-family: "Roboto Flex", sans-serif;
+}
+
+.greeting-text-dashboard,
+.greeting-text-ingresos {
+  color: var(--text-secondary);
+  margin: 0;
+  font-size: 1.125rem;
+  font-family: "Roboto Flex", sans-serif;
+}
+
+.summary-center-dashboard,
+.summary-center-ingresos {
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(14, 165, 233, 0.1);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(14, 165, 233, 0.2);
+}
+
+.available-amount-dashboard,
+.available-amount-ingresos {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: var(--primary-400);
+  letter-spacing: -0.05em;
+  font-family: "Roboto Flex", sans-serif;
+}
+
+.monthly-stats-dashboard,
+.monthly-stats-ingresos {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  font-family: "Roboto Flex", sans-serif;
+}
+
+.monthly-stats-dashboard > div,
+.monthly-stats-ingresos > div {
+  margin-bottom: 0.25rem;
+}
+
+.summary-right-dashboard,
+.summary-right-ingresos {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  justify-self: end;
+}
+
+/* Added USD rate display styles */
+.usd-rate-container {
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(34, 197, 94, 0.1);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  min-width: 160px;
+}
+
+.usd-rate-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--success-400);
+  margin-bottom: 0.5rem;
+  font-family: "Roboto Flex", sans-serif;
+}
+
+.usd-rate-value {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--success-300);
+  margin-bottom: 0.25rem;
+  font-family: "Roboto Flex", sans-serif;
+  letter-spacing: -0.025em;
+}
+
+.usd-rate-subtitle {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: "Roboto Flex", sans-serif;
+}
+
+/* Added EUR rate display styles */
+.eur-rate-container {
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(168, 85, 247, 0.1);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  min-width: 160px;
+}
+
+.eur-rate-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #c084fc;
+  margin-bottom: 0.5rem;
+  font-family: "Roboto Flex", sans-serif;
+}
+
+.eur-rate-value {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #a855f7;
+  margin-bottom: 0.25rem;
+  font-family: "Roboto Flex", sans-serif;
+  letter-spacing: -0.025em;
+}
+
+.eur-rate-subtitle {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: "Roboto Flex", sans-serif;
+}
+
+/* Updated button styles with proper color coding and consistent font */
+.btn-add-dashboard,
+.btn-edit-dashboard,
+.btn-primary-ingresos,
+.btn-secondary-ingresos,
+.submit-button-expenses,
+.btn-success-dashboard,
+.btn-danger-dashboard,
+.btn-income-dashboard,
+.btn-expense-dashboard,
+.btn-neutral-dashboard {
+  padding: 0.875rem 1.5rem;
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  font-size: 0.875rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-md);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto Flex", sans-serif;
+}
+
+/* Income buttons - Green */
+.btn-income-dashboard {
+  background: var(--success-500);
+  color: white;
+}
+
+.btn-income-dashboard:hover {
+  background: var(--success-600);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Expense buttons - Red */
+.btn-expense-dashboard {
+  background: var(--danger-500);
+  color: white;
+}
+
+.btn-expense-dashboard:hover {
+  background: var(--danger-600);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Neutral buttons - Gray */
+.btn-neutral-dashboard {
+  background: var(--gray-600);
+  color: white;
+}
+
+.btn-neutral-dashboard:hover {
+  background: var(--gray-700);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Legacy button styles for compatibility */
+.btn-add-dashboard,
+.btn-primary-ingresos,
+.submit-button-expenses {
+  background: var(--primary-500);
+  color: white;
+}
+
+.btn-edit-dashboard,
+.btn-secondary-ingresos {
+  background: var(--gray-600);
+  color: white;
+}
+
+.btn-success-dashboard {
+  background: var(--success-500);
+  color: white;
+}
+
+.btn-danger-dashboard {
+  background: var(--danger-500);
+  color: white;
+}
+
+.btn-add-dashboard:hover,
+.btn-edit-dashboard:hover,
+.btn-primary-ingresos:hover,
+.btn-secondary-ingresos:hover,
+.submit-button-expenses:hover,
+.btn-success-dashboard:hover,
+.btn-danger-dashboard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-add-dashboard:hover,
+.btn-primary-ingresos:hover,
+.submit-button-expenses:hover {
+  background: var(--primary-600);
+}
+
+.btn-edit-dashboard:hover,
+.btn-secondary-ingresos:hover {
+  background: var(--gray-700);
+}
+
+.btn-success-dashboard:hover {
+  background: var(--success-600);
+}
+
+.btn-danger-dashboard:hover {
+  background: var(--danger-600);
+}
+
+/* Dashboard Grid */
+.dashboard-grid-dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* Section Headers */
+.section-header-dashboard,
+.transactions-header-ingresos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.section-title-dashboard {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-family: "Roboto Flex", sans-serif;
+}
+
+.ver-todo-dashboard,
+.chart-toggle-dashboard {
+  color: var(--primary-400);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.875rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  font-family: "Roboto Flex", sans-serif;
+}
+
+.ver-todo-dashboard:hover,
+.chart-toggle-dashboard:hover {
+  color: var(--primary-300);
+}
+
+/* Transaction Lists */
+.transactions-list-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.transaction-item-dashboard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: rgba(51, 65, 85, 0.3);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-primary);
+  transition: all 0.2s ease;
+  font-family: "Roboto Flex", sans-serif;
+}
+
+.transaction-item-dashboard:hover {
+  background: rgba(51, 65, 85, 0.5);
+  border-color: var(--border-secondary);
+}
+
+.amount-income-dashboard,
+.amount-ingresos {
+  color: var(--success-400);
+  font-weight: 700;
+  font-family: "Roboto Flex", sans-serif;
+}
+
+.amount-expense-dashboard {
+  color: var(--danger-400);
+  font-weight: 700;
+  font-family: "Roboto Flex", sans-serif;
+}
+
+/* Category Badges */
+.category-badge-dashboard,
+.category-badge-ingresos {
+  padding: 0.375rem 0.875rem;
+  border-radius: var(--radius-lg);
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  font-family: "Roboto Flex", sans-serif;
+}
+
+.category-1-dashboard,
+.category-1-ingresos {
+  background: rgba(34, 197, 94, 0.2);
+  color: var(--success-300);
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+.category-2-dashboard,
+.category-2-ingresos {
+  background: rgba(14, 165, 233, 0.2);
+  color: var(--primary-300);
+  border-color: rgba(14, 165, 233, 0.3);
+}
+
+.category-3-dashboard,
+.category-3-ingresos {
+  background: rgba(168, 85, 247, 0.2);
+  color: #c084fc;
+  border-color: rgba(168, 85, 247, 0.3);
+}
+
+/* Enhanced chart containers with dark backgrounds */
+.chart-container-dashboard {
+  height: 320px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-primary);
+  padding: 1rem;
+}
+
+/* Tables */
+.transactions-table-ingresos {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+  font-family: "Roboto Flex", sans-serif;
+}
+
+.transactions-table-ingresos th {
+  background: rgba(51, 65, 85, 0.5);
+  color: var(--text-primary);
+  font-weight: 700;
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-primary);
+  font-family: "Roboto Flex", sans-serif;
+}
+
+.transactions-table-ingresos td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-primary);
+  color: var(--text-secondary);
+  font-family: "Roboto Flex", sans-serif;
+}
+
+.transactions-table-ingresos th:last-child,
+.transactions-table-ingresos td:last-child {
+  text-align: right;
+}
+
+.table-wrapper-ahorros {
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-card);
+}
+
+.table-ahorros {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Roboto Flex", sans-serif;
+}
+
+.table-ahorros th {
+  background: rgba(51, 65, 85, 0.5);
+  color: var(--text-primary);
+  font-weight: 700;
+  padding: 1rem;
+  font-size: 1rem; /* aumentar un poco para mejor legibilidad */
+  text-align: left;
+  font-family: "Roboto Flex", sans-serif;
+}
+
+.table-ahorros td {
+  padding: 1rem;
+  font-size: 1rem; /* aumentar un poco */
+  border-top: 1px solid var(--border-primary);
+  color: var(--text-secondary);
+  font-family: "Roboto Flex", sans-serif;
+}
+
+.chip-green-ahorros {
+  display: inline-block;
+  background: rgba(34, 197, 94, 0.2);
+  color: var(--success-300);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 0.25rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.75rem;
+  font-family: "Roboto Flex", sans-serif;
+}
+
+.chip-red-ahorros {
+  display: inline-block;
+  background: rgba(239, 68, 68, 0.2);
+  color: var(--danger-300);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 0.25rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.75rem;
+  font-family: "Roboto Flex", sans-serif;
+}
+
+.progress-ahorros {
+  height: 8px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.progress-bar-ahorros {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-500), var(--primary-400));
+  transition: width 0.3s ease;
+}
+
+/* QR Styles */
+.qr-hero-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.qr-hero-code {
+  width: 240px;
+  height: 240px;
+  border: 2px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  background: var(--bg-secondary);
+  justify-self: center;
+}
+
+.qr-mini {
+  width: 52px;
+  height: 52px;
+  border: 2px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  background: var(--bg-secondary);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .main-content-dashboard,
+  .main-content-ingresos {
+    padding: 0 1rem;
+  }
+
+  .dashboard-grid-dashboard {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* Added responsive styling for USD rate container */
+  .usd-rate-container {
+    min-width: 140px;
+    padding: 1rem;
+  }
+
+  .usd-rate-value {
+    font-size: 1.5rem;
+  }
+
+  /* Added responsive styling for EUR rate container */
+  .eur-rate-container {
+    min-width: 140px;
+    padding: 1rem;
+  }
+
+  .eur-rate-value {
+    font-size: 1.5rem;
+  }
+
+  .summary-content-dashboard,
+  .summary-content-ingresos {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .summary-right-dashboard,
+  .summary-right-ingresos {
+    justify-self: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Improved table responsiveness */
+  .table-wrapper-ahorros {
+    overflow-x: auto;
+  }
+
+  .table-ahorros {
+    min-width: 600px;
+  }
+
+  .table-ahorros th,
+  .table-ahorros td {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .qr-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .qr-hero-code {
+    width: 200px;
+    height: 200px;
+  }
+
+  .available-amount-dashboard,
+  .available-amount-ingresos {
+    font-size: 2rem;
+  }
+
+  .greeting-title-dashboard,
+  .greeting-title-ingresos {
+    font-size: 1.5rem;
+  }
+
+  /* Responsive styling for elegant title */
+  .greeting-title-elegant {
+    font-size: 2rem;
+  }
+
+  /* Responsive styling for larger elegant title */
+  .greeting-title-elegant-large {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header,
+  .header-dashboard,
+  .header-ingresos {
+    padding: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .header-logo {
+    flex-shrink: 0;
+  }
+
+  .header div:last-child,
+  .header-dashboard div:last-child,
+  .header-ingresos div:last-child {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  /* Hide the full header buttons on small screens; show when hamburger toggled */
+  .header-buttons-container {
+    display: none;
+  }
+  .header-buttons-container.open {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .hamburger-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: rgba(51, 65, 85, 0.2);
+    border: 1px solid var(--border-primary);
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 0.75rem;
+  }
+  .hamburger-box {
+    display: inline-block;
+    width: 20px;
+    height: 14px;
+    position: relative;
+  }
+  .hamburger-inner {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--text-primary);
+    transform: translateY(-50%);
+  }
+  .hamburger-inner::before,
+  .hamburger-inner::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--text-primary);
+  }
+  .hamburger-inner::before {
+    top: -7px;
+  }
+  .hamburger-inner::after {
+    top: 7px;
+  }
+  .hamburger-button.open .hamburger-inner {
+    background: transparent;
+  }
+  .hamburger-button.open .hamburger-inner::before {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .hamburger-button.open .hamburger-inner::after {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .summary-content-dashboard,
+  .summary-content-ingresos {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .summary-right-dashboard,
+  .summary-right-ingresos {
+    justify-self: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Improved table responsiveness */
+  .table-wrapper-ahorros {
+    overflow-x: auto;
+  }
+
+  .table-ahorros {
+    min-width: 600px;
+  }
+
+  .table-ahorros th,
+  .table-ahorros td {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .qr-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .qr-hero-code {
+    width: 200px;
+    height: 200px;
+  }
+
+  .available-amount-dashboard,
+  .available-amount-ingresos {
+    font-size: 2rem;
+  }
+
+  .greeting-title-dashboard,
+  .greeting-title-ingresos {
+    font-size: 1.5rem;
+  }
+
+  /* Responsive styling for elegant title */
+  .greeting-title-elegant {
+    font-size: 2rem;
+  }
+
+  /* Responsive styling for larger elegant title */
+  .greeting-title-elegant-large {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content-dashboard,
+  .main-content-ingresos {
+    margin: 1rem auto;
+  }
+
+  .summary-card-dashboard,
+  .transactions-section-dashboard,
+  .chart-section-dashboard,
+  .summary-card-ingresos,
+  .transactions-section-ingresos {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Better mobile table handling */
+  .table-ahorros {
+    min-width: 500px;
+  }
+
+  .table-ahorros th,
+  .table-ahorros td {
+    padding: 0.5rem 0.25rem;
+    font-size: 0.8rem;
+  }
+
+  .chip-green-ahorros,
+  .chip-red-ahorros {
+    padding: 0.125rem 0.5rem;
+    font-size: 0.7rem;
+  }
+
+  .modal-content-expenses {
+    width: 95%;
+    margin: 1rem;
+    max-width: 560px;
+  }
+
+  .modal-header-expenses,
+  .modal-form-expenses {
+    padding: 1.5rem;
+  }
+
+  /* Mobile responsive styling for elegant title */
+  .greeting-title-elegant {
+    font-size: 1.75rem;
+  }
+
+  .greeting-title-elegant-large {
+    font-size: 2rem;
+  }
+
+  .btn-header {
+    min-width: 90px;
+    padding: 0.625rem 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  /* Mobile responsive styling for USD rate */
+  .usd-rate-container {
+    min-width: 120px;
+    padding: 0.75rem;
+  }
+
+  .usd-rate-value {
+    font-size: 1.25rem;
+  }
+
+  .usd-rate-title {
+    font-size: 0.8rem;
+  }
+
+  .usd-rate-subtitle {
+    font-size: 0.7rem;
+  }
+
+  /* Mobile responsive styling for EUR rate */
+  .eur-rate-container {
+    min-width: 120px;
+    padding: 0.75rem;
+  }
+
+  .eur-rate-value {
+    font-size: 1.25rem;
+  }
+
+  .eur-rate-title {
+    font-size: 0.8rem;
+  }
+
+  .eur-rate-subtitle {
+    font-size: 0.7rem;
+  }
+}
+
+/* Modal Styles */
+.modal-expenses {
+  display: none;
+  position: fixed;
+  inset: 0;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 120000;
+}
+
+.modal-expenses:target,
+.modal-expenses[style*="flex"] {
+  display: flex;
+}
+
+.modal-content-expenses {
+  background: var(--bg-card, #1e293b);
+  border-radius: var(--radius-2xl, 16px);
+  border: 2px solid var(--border-primary, rgba(255,255,255,0.1));
+  box-shadow: var(--shadow-xl, 0 12px 32px rgba(0,0,0,0.4));
+  
+  /* tamaño y centrado */
+  width: clamp(360px, 90vw, 720px);
+  max-height: 85vh;
+
+  /* Centrado vertical y horizontal */
+  margin: auto;
+  position: relative; /* Opcional, para asegurar contexto de posicionamiento */
+
+
+  /* estructura interna */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* header fijo + body scroll interno */
+  z-index: 2400;
+}
+
+
+/* layout: header fixed at top of modal-content, form/body scrolls separately */
+.modal-content-expenses {
+  display: flex;
+  flex-direction: column;
+}
+.modal-header-expenses {
+  width: 100%;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+}
+.modal-form-container {
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+
+/* If viewport is small, lower a bit more to avoid clipping under sticky header */
+@media (max-height: 900px) {
+  /* on short viewports anchor closer to the top but preserve spacing */
+  .modal-content-expenses {
+    top: 64px;
+    transform: translateX(-50%);
+    max-height: calc(100vh - 120px);
+  }
+}
+
+.modal-header-expenses {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  border-bottom: 1px solid var(--border-primary);
+  background: rgba(51, 65, 85, 0.3);
+}
+
+.modal-title-expenses {
+  color: var(--text-primary);
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0;
+  font-family: "Roboto Flex", sans-serif;
+}
+
+.modal-close-expenses {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.modal-close-expenses:hover {
+  color: var(--text-primary);
+}
+
+/* Ensure modal header close button sits above other UI */
+.modal-close-expenses {
+  position: relative;
+  z-index: 121000; /* ensure the close button sits above overlay and other decorations */
+}
+
+.modal-form-expenses {
+  /* increase top padding so the form content sits lower inside the modal */
+  padding: 3.5rem 2rem 2rem;
+}
+
+/* ensure the scroll track doesn't cover the header: target the form container scrollbar */
+.modal-form-container::-webkit-scrollbar {
+  width: 10px;
+}
+.modal-form-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+}
+.modal-form-container::-webkit-scrollbar-thumb {
+  background: rgba(71, 85, 105, 0.6);
+  border-radius: 8px;
+  border: 2px solid rgba(0, 0, 0, 0);
+}
+.modal-form-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(71, 85, 105, 0.8);
+}
+
+/* Make modal scrollbar clean and thin */
+.modal-content-expenses::-webkit-scrollbar {
+  width: 10px;
+}
+.modal-content-expenses::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+}
+.modal-content-expenses::-webkit-scrollbar-thumb {
+  background: rgba(71, 85, 105, 0.6);
+  border-radius: 8px;
+  border: 2px solid rgba(0, 0, 0, 0);
+}
+.modal-content-expenses::-webkit-scrollbar-thumb:hover {
+  background: rgba(71, 85, 105, 0.8);
+}
+
+/* Extra safeguard for medium/smaller viewports: keep form lowered but not excessive */
+@media (max-width: 768px) {
+  .modal-form-expenses {
+    padding-top: 2.5rem;
+  }
+}
+
+/* Form Styles */
+.form-group-expenses {
+  margin-bottom: 1.5rem;
+}
+
+.form-label-expenses {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  font-family: "Roboto Flex", sans-serif;
+}
+
+.form-input-expenses,
+.form-select-expenses,
+.form-textarea-expenses {
+  width: 100%;
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 1.02rem;
+  transition: all 0.2s ease;
+  font-family: "Roboto Flex", sans-serif;
+}
+
+.form-input-expenses:focus,
+.form-select-expenses:focus,
+.form-textarea-expenses:focus {
+  outline: none;
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+  background-color: var(--bg-tertiary);
+}
+
+.form-textarea-expenses {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Footer */
+.footer,
+.footer-dashboard,
+.footer-ingresos {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 2rem;
+  margin-top: 3rem;
+  border-top: 1px solid var(--border-primary);
+  font-family: "Roboto Flex", sans-serif;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.summary-card-dashboard,
+.transactions-section-dashboard,
+.chart-section-dashboard {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-secondary);
+  border-radius: var(--radius-lg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gray-500);
+}
+/* ====== Auth (Login/Registro) ====== */
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 650px; /* tarjeta chica */
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  padding: 24px;
+  text-align: center;
+}
+
+.auth-logo {
+  width: 230px; /* ajustá tamaño del logo acá */
+  height: auto;
+  display: block;
+  margin: 0 auto 12px;
+}
+
+.auth-title {
+  margin: 0 0 16px 0;
+  font-size: 1.5rem;
+  font-weight: 1000;
+  color: var(--text-primary);
+}
+
+/* Reusa tus campos existentes .form-* */
+
+.btn-auth {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-top: 4px;
+  background: var(--primary-500);
+  color: #fff;
+  background-color: #587fff;
+  font-weight: 700;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: transform .15s ease, background .2s ease, box-shadow .2s ease;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-auth-eliminar {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-top: 4px;
+  font-weight: 700;
+  border: 1px solid;
+  border-color: rgba(248, 100, 100, 0.8);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+
+  /* 🔴 color estilo alerta, pero suave como el success-header */
+  background: rgba(248, 100, 100, 0.8);
+  color: #fff;
+
+  /* mismas transiciones que tus otros botones */
+  transition: transform .15s ease, background .2s ease, box-shadow .2s ease;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-auth-eliminar:hover {
+  background: rgba(248, 100, 100, 1);
+  transform: translateY(-1px);
+}
+
+.btn-auth-editar {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-top: 4px;
+  font-weight: 700;
+  border: 1px solid;
+  border-color: rgba(249, 231, 97, 0.8);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+
+  /* 🔴 color estilo alerta, pero suave como el success-header */
+  background: rgba(249, 231, 97, 0.8);
+  color: #fff;
+
+  /* mismas transiciones que tus otros botones */
+  transition: transform .15s ease, background .2s ease, box-shadow .2s ease;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-auth-editar:hover {
+  background: rgba(rgba(249, 231, 97, 1));
+  transform: translateY(-1px);
+}
+
+.btn-auth:hover {
+  background: var(--primary-600);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+}
+
+.auth-error {
+  color: #ef4444;
+  font-size: 0.9rem;
+  margin: 8px 0 4px;
+}
+
+.auth-footer {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.auth-link {
+  color: var(--primary-400);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.auth-link:hover {
+  color: var(--primary-300);
+  text-decoration: underline;
+}
+
+/* Responsive: logo un poquito más chico en móvil */
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 20px;
+  }
+  .auth-logo {
+    width: 100px;
+  }
+}
+.btn-view-header,
+.btn-view-income-header,
+.btn-view-expense-header {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 1.25rem;
+  border-radius: var(--radius-lg);
+  font-weight: 700;
+  font-size: 0.95rem;
+  min-width: 160px;
+  cursor: pointer;
+  text-decoration: none;
+  border: 1px solid var(--border-primary);
+  background: rgba(51, 65, 85, 0.2);
+  transition: transform .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+}
+
+/* Colores */
+.btn-view-income-header {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: rgba(34, 197, 94, 0.2);
+  color: var(--success-300);
+}
+.btn-view-income-header:hover {
+  background: rgba(34, 197, 94, 0.18);
+  border-color: rgba(34, 197, 94, 0.35);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-view-expense-header {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.2);
+  color: var(--danger-300);
+}
+.btn-view-expense-header:hover {
+  background: rgba(239, 68, 68, 0.18);
+  border-color: rgba(239, 68, 68, 0.35);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ====== Estilos del Calendario ====== */
+.calendar-wrapper {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  border: 1px solid var(--border-primary);
+  box-shadow: var(--shadow-xl);
+  font-family: "Roboto Flex", sans-serif;
+  max-width: 1400px;
+  margin: 2rem auto;
+}
+
+/* Header del Calendario */
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-primary);
+}
+.calendar-title h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.calendar-week-range {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+.calendar-controls button {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-secondary);
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.calendar-controls button:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border-color: var(--primary-500);
+  transform: translateY(-1px);
+}
+
+/* Encabezado de días */
+.calendar-days-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /* Alineamos los 7 días correctamente */
+  border-bottom: 1px solid var(--border-primary);
+}
+.calendar-days-header-hour-col {
+  display: none; /* Ocultamos la columna de hora fantasma */
+}
+.calendar-day-header {
+  text-align: center;
+  padding: 0.5rem 0;
+}
+.calendar-day-header.today .calendar-day-number {
+  background: var(--primary-500);
+  color: white;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  margin: 0.25rem auto 0;
+}
+.calendar-day-name {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+.calendar-day-number {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Grid principal */
+.calendar-grid {
+  display: block; /* Cambiado de grid a block */
+  max-height: 70vh; /* Ajusta la altura máxima */
+  overflow-y: auto;
+}
+
+
+/* ... (El resto de los estilos del calendario que te proporcioné irían aquí) ... */
+/* (Por brevedad, no se repiten todos, pero el código completo está en la explicación) */
+.btn-view-header,
+.btn-view-income-header,
+.btn-view-expense-header {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 1.25rem;
+  border-radius: var(--radius-lg);
+  font-weight: 700;
+  font-size: 0.95rem;
+  min-width: 160px;
+  cursor: pointer;
+  text-decoration: none;
+  border: 1px solid var(--border-primary);
+  background: rgba(51, 65, 85, 0.2);
+  transition: transform .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+}
+
+/* Colores */
+.btn-view-income-header {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: rgba(34, 197, 94, 0.2);
+  color: var(--success-300);
+}
+.btn-view-income-header:hover {
+  background: rgba(34, 197, 94, 0.18);
+  border-color: rgba(34, 197, 94, 0.35);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-view-expense-header {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.2);
+  color: var(--danger-300);
+}
+.btn-view-expense-header:hover {
+  background: rgba(239, 68, 68, 0.18);
+  border-color: rgba(239, 68, 68, 0.35);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Columna de horas */
+.calendar-hours-col {
+  border-right: 1px solid var(--border-primary);
+  display: none; /* Ocultamos la columna de horas */
+}
+.calendar-hour-label {
+  height: 100px;
+  width: 100px; /* Coincide con HOUR_HEIGHT en el JS */
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: right;
+  padding-right: 0.5rem;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding-top: 2px;
+}
+.calendar-hour-label::after {
+  content: "";
+  position: absolute;
+  right: -4px;
+  bottom: 0;
+  width: 100px;
+  height: 1px;
+  background: var(--border-primary);
+}
+
+/* Columnas de días */
+.calendar-days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  position: relative;
+  min-height: 500px; /* Altura mínima para que se vea algo */
+}
+.calendar-day-column {
+  position: relative;
+  border-right: 1px solid var(--border-secondary);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Espacio entre eventos */
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.calendar-day-column:hover {
+  background-color: var(--bg-secondary);
+}
+.calendar-day-column:last-child {
+  border-right: none;
+}
+
+/* Placeholder para días vacíos */
+.calendar-day-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: var(--text-muted);
+  font-size: 2rem;
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+/* Eventos */
+.calendar-event {
+  position: relative; /* Cambiado de absolute a relative */
+  left: auto;
+  right: auto;
+  top: auto; /* Limpiamos posicionamiento absoluto */
+  border-radius: var(--radius-md);
+  padding: 4px 8px;
+  background: var(--primary-600);
+  color: var(--primary-50);
+  font-size: 0.75rem;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  overflow: hidden;
+  border-left: 3px solid var(--primary-400);
+  transition: all 0.2s ease;
+  width: 100%; /* Ocupa todo el ancho de la columna */
+}
+.calendar-event:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-xl);
+  background: var(--primary-500);
+}
+.calendar-event-title {
+  font-weight: 700;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.calendar-event-time {
+  font-size: 0.7rem;
+  opacity: 0.9;
+}
+
+/* Scrollbar sutil para el grid del calendario */
+.calendar-grid::-webkit-scrollbar {
+  width: 8px;
+}
+.calendar-grid::-webkit-scrollbar-track {
+  background: transparent;
+}
+.calendar-grid::-webkit-scrollbar-thumb {
+  background: var(--border-secondary);
+  border-radius: var(--radius-lg);
+}
+
+/* Estilo específico para eventos de GASTO en el calendario */
+.calendar-event-gasto {
+  background: var(--danger-600);
+  border-left-color: var(--danger-400);
+}
+.calendar-event-gasto:hover {
+  background: var(--danger-500);
+}
+
+/* Estilo específico para eventos de INGRESO en el calendario */
+.calendar-event-ingreso {
+  background: var(--success-600);
+  border-left-color: var(--success-400);
+}
+.calendar-event-ingreso:hover {
+  background: var(--success-500);
+}

@@ -1,0 +1,227 @@
+{% extends "base.html" %}
+
+{% block title %}Ge$tor{% endblock %}
+
+{% block content %}
+<main class="main-content-dashboard" >
+<div class="summary-card-dashboard">
+    <div class="summary-content-dashboard">
+        <div class="summary-left-dashboard">
+            <h1 class="greeting-title-dashboard">Bienvenido, {{usuario}}</h1>
+            <p class="greeting-text-dashboard"><strong>Acá podrás visualizar un resumen<br>de tus movimientos
+                    mensuales</strong></p>
+        </div>
+        <div class="summary-center-dashboard">
+            <div class="available-amount-dashboard">
+                <strong>Disponible: $<span id="saldo">{{ disponible}}</span></strong>
+            </div>
+            <div class="monthly-stats-dashboard">
+                <div><strong>Ingresos de {{ mes }}:  ${{ totalEgreso }}</strong></div>
+                
+                <div><strong>Egresos de {{ mes }}: ${{ totalIngreso }}</strong></div>
+            </div>
+        </div>
+        <div class="summary-right-dashboard">
+            <button class="btn btn-primary-ingresos" id="btnAgregarGasto" onclick="window.location.href='#modal-add-expense'">Agregar
+                gasto</button>
+            <button class="btn btn-secondary-ingresos" onclick="window.location.href='#modal-edit-income'">Agregar
+                ingresos</button>
+        </div>
+    </div>
+</div>
+
+<div class="dashboard-grid-dashboard mt-4">
+    <!-- Sección de últimos ingresos -->
+    <div class="transactions-section-dashboard">
+        <div class="section-header-dashboard d-flex justify-content-between align-items-center">
+            <h2 class="section-title-dashboard">Últimos egresos</h2>
+            <a href="{{ url_for('detalle', caso='egresos') }}" class="ver-todo-dashboard">Ver todo</a>
+
+        </div>
+  <div class="transactions-list-dashboard">
+        {% for gastos in lista_gastos %}
+      
+            <div class="transaction-item-dashboard">
+                <span class="amount-income-dashboard" style="color:red">${{ gastos.monto }}</span>
+                <span id="{{gastos.categoria}}" class="badge ">{{gastos.categoria}}</span>
+            </div>
+    {% endfor %}
+        </div>
+
+        <!-- Sección de últimos egresos -->
+        <div class="section-header-dashboard d-flex justify-content-between align-items-center mt-4">
+            <h2 class="section-title-dashboard">Últimos ingresos</h2>
+            <a href="{{ url_for('detalle', caso='ingresos') }}" class="ver-todo-dashboard">Ver todo</a>
+
+        </div>
+        <div class="transactions-list-dashboard">
+        {% for ingresos in lista_ingresos %}
+            <div class="transaction-item-dashboard">
+                <span class="amount-expense-dashboard" style="color:var(--success-color-dashboard)">${{ ingresos.monto }}</span>
+                <span class="badge">Ingreso</span>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+
+    <!-- Grafico -->
+    <div class="chart-section-dashboard">
+        <div class="section-header-dashboard">
+          <h2 class="section-title-dashboard">Estadisticas</h2>
+          <form method="POST">
+            <button type="submit" id="cambiar-grafico" class="ver-todo-dashboard" style="font-size:1.2rem">
+              Ver Distribución de Ingresos
+            </button>
+          </form>
+        </div>
+      <div id="barra" class="grafico-barra">{{ grafico_barras_html|safe }}</div>
+      <div id="torta" class="grafico-torta" style="display: none;">{{ grafico_torta_html|safe }}</div>
+      </div>
+    </div>
+
+
+<!-- Form Agregar Gasto -->
+<div class="modal-expenses" id="modal-add-expense">
+    <div class="modal-content-expenses">
+        <div class="modal-header-expenses">
+            <h2 class="modal-title-expenses">Agregar gasto</h2>
+            <a href="#" class="modal-close-expenses">✕</a>
+        </div>
+        <form method="post" action="{{ url_for('agregar_gasto') }}" class="modal-form-expenses">
+            <div class="form-group-expenses">
+                <label class="form-label-expenses"><strong>Monto</strong></label>
+                <input type="number" name="monto" class="form-input-expenses" placeholder="Ingrese el monto" required>
+            </div>
+            <div class="form-group-expenses">
+                <label class="form-label-expenses"><strong>Categoría</strong></label>
+                <div class="select-wrapper-expenses">
+                    <select name="categoria" class="form-select-expenses" required>
+                        <option value="" disabled selected>Seleccione una categoría</option>
+                        {% for tipo in tipos_gastos %}
+                            <option value="{{ tipo.id_tipo }}">{{ tipo.nombre_tipo }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group-expenses">
+                <label class="form-label-expenses"><strong>Descripción</strong></label>
+                <textarea name="descripcion" class="form-textarea-expenses" placeholder="Ingrese una descripción"></textarea>
+            </div>
+            <button type="submit" class="submit-button-expenses">Ingresar</button>
+        </form>
+</div>
+
+</div>
+
+<!-- Form Editar Ingresos -->
+<div class="modal-expenses" id="modal-edit-income">
+    <div class="modal-content-expenses">
+        <div class="modal-header-expenses">
+            <h2 class="modal-title-expenses">Agregar ingresos</h2>
+            <a href="#" class="modal-close-expenses">✕</a>
+        </div>
+        <form method="post" action="{{ url_for('agregar_ingreso') }}" class="modal-form-expenses">
+            <div class="form-group-expenses">
+                <label class="form-label-expenses"><strong>Monto</strong></label>
+                <input type="number" name="monto" class="form-input-expenses" placeholder="Ingrese el monto" required>
+            </div>
+            <button type="submit" class="submit-button-expenses">Ingresar</button>
+        </form>
+    </div>
+</div>
+</main>
+
+{% endblock %} {% block scripts %}
+
+<script>
+
+
+    const saldo = document.getElementById("saldo");
+    if (parseFloat(saldo.textContent) < 0) {
+        saldo.style.color = "red";
+    } else {
+        saldo.style.color = "green";
+    }
+
+    const categorias = document.querySelectorAll(".badge");
+    categorias.forEach(categoria => {
+        switch (categoria.id) {
+            case "Alquiler":
+                categoria.style.backgroundColor = "#3D63FF";
+                break;
+            case "Alimentos":
+                categoria.style.backgroundColor = "#D45F5F";
+                
+                break;
+            case "Transporte":
+                categoria.style.backgroundColor = "#30B9FE";
+                break;
+            case "Otros":
+                categoria.style.backgroundColor = "#38E184";
+                break;
+            default:
+                categoria.style.backgroundColor = "#D25AC8";
+        }
+    });
+    const graficoBarras = document.getElementById("barra");
+    const graficoTorta = document.getElementById("torta");
+    const grafico = document.getElementById("cambiar-grafico");
+
+    // Check local storage for the last displayed chart
+    if (localStorage.getItem("lastChart") === "torta") {
+        graficoBarras.style.display = "none";
+        graficoTorta.style.display = "block";
+        grafico.textContent = "Ver Distribución de Egresos";
+    } else {
+        graficoBarras.style.display = "block";
+        graficoTorta.style.display = "none";
+        grafico.textContent = "Ver Distribución de Ingresos";
+    }
+
+    grafico.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (grafico.textContent === "Ver Distribución de Ingresos") {
+            graficoBarras.style.display = "none";
+            graficoTorta.style.display = "block";
+            grafico.textContent = "Ver Distribución de Egresos";
+            localStorage.setItem("lastChart", "torta");
+        } else {
+            graficoBarras.style.display = "block";
+            graficoTorta.style.display = "none";
+            grafico.textContent = "Ver Distribución de Ingresos";
+            localStorage.setItem("lastChart", "barras");
+        }
+    });
+
+    // Obtener el modal
+    const modal = document.getElementById("modalAgregarGasto");
+
+    // Obtener el botón que abre el modal
+    const btn = document.getElementById("btnAgregarGasto");
+
+
+    // Cuando el usuario hace clic en el botón, abrir el modal
+    btn.addEventListener("click", () => {
+        modal.style.display = "block";
+        document.querySelector(".close").addEventListener("click", () => {
+        modal.style.display = "none";
+    });
+    });
+
+    // Cuando el usuario hace clic fuera del modal, cerrarlo
+    window.addEventListener("click", (event) => {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    });
+
+    // Manejar el envío del formulario
+    document
+        .getElementById("formAgregarGasto")
+        .addEventListener("submit", (e) => {
+            e.preventDefault();
+            console.log("Formulario enviado");
+            modal.style.display = "none";
+        });
+</script>
+{% endblock %}
